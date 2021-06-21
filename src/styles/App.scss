@@ -1,3 +1,54 @@
-html {
+$font-family: Helvetica, sans-serif;
+$primary-color: #4a96d9;
+$secondary-color: #2d4459;
+$bg-color: #c4d4f2;
+$interactives-color: #03588c;
+
+body {
   margin: 0;
-} //todo: default fonts
+  font-family: $font-family;
+}
+
+.app {
+  background-color: $bg-color;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.post {
+  background-color: $primary-color;
+
+  .top {
+    font-size: 1rem;
+
+    .name {
+      font-style: normal;
+      font-weight: bold;
+    }
+
+    span {
+      font-style: italic;
+    }
+  }
+
+  .descripton {
+    font-size: 0.8rem;
+  }
+}
+
+.onHoverPost {
+  visibility: hidden;
+  display: flex;
+  font-size: 2rem;
+  justify-content: space-around;
+  background-color: $primary-color;
+
+  .active {
+    opacity: 0.7;
+    transition-duration: 0.5s;
+  }
+}
+
+.todoBox {
+  visibility: hidden;
+}

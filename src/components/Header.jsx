@@ -2,9 +2,9 @@ export const Header = () => {
   return (
     <nav>
       <ul>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li>icon</li>
+        <li>icon</li>
+        <li>icon</li>
       </ul>
     </nav>
   );

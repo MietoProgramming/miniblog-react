@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  font-family: Helvetica, sans-serif;
+}
+
+.app {
+  background-color: #c4d4f2;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.post {
+  background-color: #4a96d9;
+}
+
+.post .top {
+  font-size: 1rem;
+}
+
+.post .top .name {
+  font-style: normal;
+  font-weight: bold;
+}
+
+.post .top span {
+  font-style: italic;
+}
+
+.post .descripton {
+  font-size: 0.8rem;
+}
+
+.onHoverPost {
+  visibility: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 2rem;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: #4a96d9;
+}
+
+.onHoverPost .active {
+  opacity: 0.7;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+.todoBox {
+  visibility: hidden;
+}
+/*# sourceMappingURL=App.css.map */
