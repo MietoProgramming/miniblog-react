@@ -18,11 +18,17 @@ nav {
   width: 100vw;
 
   ul {
+    list-style: none;
+    height: 100%;
     margin: 0px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding-top: 30px;
+    align-items: center;
+  }
+
+  .icon {
+    color: $interactives-color;
   }
 }
 
@@ -30,6 +36,13 @@ nav {
   background-color: $bg-color;
   font-size: 16px;
   font-weight: 400;
+
+  .footerInfo {
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    color: rgba(black, 0.4);
+  }
 
   .main {
     display: grid;

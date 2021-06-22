@@ -4,6 +4,7 @@ import { PostWall } from "./PostWall";
 import { useEffect, useState } from "react";
 import { setupTodos, setupPosts, setupUsers } from '../actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter as Router } from "react-router-dom";
 
 
 function App() {
@@ -44,11 +45,16 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
-      <Header />
-      <div className="main">{loading ? <div className="loadingBox"></div> :
-        <PostWall posts={posts} />}</div>
-    </div>
+    <Router>
+      <div className="app">
+        <div className="footerInfo">
+          <p>Icons from	fontawesome.com</p>
+        </div>
+        <Header />
+        <div className="main">{loading ? <div className="loadingBox"></div> :
+          <PostWall posts={posts} />}</div>
+      </div>
+    </Router>
   );
 }
 
