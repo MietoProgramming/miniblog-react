@@ -1,7 +1,7 @@
 $font-family: Helvetica, sans-serif;
 $primary-color: #4a96d9;
 $secondary-color: #c4d4f2;
-$bg-color: #ffffffce;
+$bg-color: #e0e0e0ce;
 $interactives-color: #03588c;
 
 $border_radius_boxes: 20px;
@@ -34,6 +34,20 @@ nav {
   .main {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr;
+    min-height: 100vh;
+
+    .loadingBox {
+      position: absolute;
+      top: 10vh;
+      left: 20vw;
+      width: 20px;
+      height: 20px;
+      background-color: black;
+      animation-name: loading;
+      animation-iteration-count: infinite;
+      animation-duration: 2s;
+      grid-column: 2/3;
+    }
 
     .postWall {
       grid-column: 2/3;
@@ -62,6 +76,15 @@ nav {
           ul {
             padding-left: 30px;
             font-size: 1rem;
+            list-style: none;
+
+            li::before {
+              content: "\2022";
+              display: inline-block;
+              font-weight: bold;
+              width: 1rem;
+              margin-left: -1.2em;
+            }
           }
 
           .todoTitle {
@@ -75,12 +98,17 @@ nav {
             font-variant-caps: small-caps;
           }
 
-          .completedTask {
+          .completedTask::before {
+            color: green;
           }
 
           .uncompletedTask {
             color: grey;
             text-decoration: line-through;
+
+            &::before {
+              color: red;
+            }
           }
         }
       }
@@ -96,6 +124,7 @@ nav {
   grid-column: 2/3;
   padding: 10px;
   border-radius: $border_radius_boxes;
+  height: 30vh;
 
   .top {
     height: auto;
@@ -139,14 +168,68 @@ nav {
 }
 
 .onHoverPost {
+  position: relative;
+  top: -20vh;
   visibility: hidden;
   display: flex;
   font-size: 2rem;
   justify-content: space-around;
-  background-color: $primary-color;
+  border-radius: $border_radius_boxes;
+  height: 15vh;
+  align-items: center;
+  text-align: center;
 
-  .active {
-    opacity: 0.7;
-    transition-duration: 0.5s;
+  &.active {
+    background-color: rgba($primary-color, 0.1);
+    visibility: visible;
+    animation: hoverAnimation 1.5s ease-out;
+    opacity: 0.9;
+  }
+  .icon:hover {
+    animation: moving 0.8s ease-out;
+    animation-delay: 0.2s;
+  }
+}
+
+@keyframes hoverAnimation {
+  from {
+    opacity: 0;
+    background-color: rgba($primary-color, 0);
+  }
+  to {
+    opacity: 0.9;
+    background-color: rgba($primary-color, 0.1);
+  }
+}
+
+@keyframes moving {
+  0% {
+    transform: rotate3d(0, 0, 0, 0deg);
+  }
+  100% {
+    transform: rotate3d(0, 0, 1, 720deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    top: 20%;
+    left: 45%;
+  }
+  25% {
+    top: 20%;
+    left: 55%;
+  }
+  50% {
+    top: 40%;
+    left: 55%;
+  }
+  75% {
+    top: 40%;
+    left: 45%;
+  }
+  100% {
+    top: 20%;
+    left: 45%;
   }
 }
