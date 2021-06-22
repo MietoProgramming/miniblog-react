@@ -3,18 +3,22 @@ export const Todos = ({ todos }) => {
   return (
     <div className="todo">
       <div className="decorationBox"></div>
-      <div>TODO LIST</div>
+      <span className="todoTitle">TODO LIST</span>
       <hr />
       <ul>
-        {todos.map((todo) => {
-          return (
-            <li
-              className={todo.completed ? "completedTask" : "uncompletedTask"}
-            >
-              {todo.text}
-            </li>
-          );
-        })}
+        {todos
+          .sort((a, b) => (a.completed === false ? -1 : 1))
+          .map((todo) => {
+            return (
+              <li
+                className={
+                  todo.completed ? "task completedTask" : "task uncompletedTask"
+                }
+              >
+                <span>{todo.title}</span>
+              </li>
+            );
+          })}
         ;
       </ul>
     </div>

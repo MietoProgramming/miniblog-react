@@ -1,7 +1,7 @@
 import '../styles/App.css';
 import { Header } from "./Header";
 import { PostWall } from "./PostWall";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setupTodos, setupPosts, setupUsers } from '../actions';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,6 +10,7 @@ function App() {
   let seedForAPI = "mySeed";
   const posts = useSelector(state => state.posts);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
 
@@ -24,19 +25,21 @@ function App() {
         return { ...post, comments: comments.filter(comment => comment.postId === post.id) }
       });
 
-      dispatch(setupPosts(finalPosts));
+      dispatch(setupPosts(finalPosts.sort((a, b) => (Math.random() > 0.5 ? -1 : 1))));
       dispatch(setupTodos(todos));
       dispatch(setupUsers(users.results));
+      setLoading(false);
     }
 
     fetchData();
 
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="app">
       <Header />
-      <PostWall posts={posts} />
+      <div className="main">{!loading &&
+        <PostWall posts={posts} />}</div>
     </div>
   );
 }

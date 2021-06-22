@@ -1,28 +1,33 @@
 import useState from "react";
 
-export const Post = ({ post }) => {
+export const Post = ({ post, setTodos, user }) => {
   const showComments = () => {};
 
-  const showTodo = () => {};
+  const showTodo = () => {
+    setTodos(user);
+  };
+
+  const onPostHover = (hover) => {};
 
   return (
     <div>
       <div className="post" onClick={showComments()}>
         <div className="top">
           <img
-            src={post.thumbnail_url}
+            src={user.picture.thumbnail}
             alt=""
             className="thumbnail"
-            onClick={showTodo()}
+            onClick={() => showTodo()}
           />
-          <span className="name">Name Surname</span>
-          <span>Title</span>
+          <div className="name">{`${user.name.first} ${user.name.last}`}</div>
+          <span className="title">{post.title}</span>
         </div>
+        <hr />
         <div className="description">
-          <p>{post.description}</p>
+          <p>{post.body}</p>
         </div>
       </div>
-      <div className="onHoverPost">
+      <div className="onHoverPost" onMouseEnter={onPostHover(true)}>
         <div>
           <img src="" alt="Likes" />
           96

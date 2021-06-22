@@ -1,33 +1,135 @@
 $font-family: Helvetica, sans-serif;
 $primary-color: #4a96d9;
-$secondary-color: #2d4459;
-$bg-color: #c4d4f2;
+$secondary-color: #c4d4f2;
+$bg-color: #ffffffce;
 $interactives-color: #03588c;
+
+$border_radius_boxes: 20px;
 
 body {
   margin: 0;
   font-family: $font-family;
 }
 
+nav {
+  height: 10vh;
+  background-color: $primary-color;
+  margin-bottom: 20px;
+  width: 100vw;
+
+  ul {
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 30px;
+  }
+}
+
 .app {
   background-color: $bg-color;
   font-size: 16px;
   font-weight: 400;
+
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+
+    .postWall {
+      grid-column: 2/3;
+
+      .todoBox {
+        position: fixed;
+        right: 50px;
+        top: 15vh;
+        background-color: $secondary-color;
+        min-height: 40vh;
+        width: 30%;
+        max-height: 80vh;
+        border-radius: $border_radius_boxes;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        visibility: hidden;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        .todo {
+          margin-bottom: 40px;
+
+          ul {
+            padding-left: 30px;
+            font-size: 1rem;
+          }
+
+          .todoTitle {
+            display: flex;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 2rem;
+            margin: 15px 5px;
+          }
+          .task {
+            font-variant-caps: small-caps;
+          }
+
+          .completedTask {
+          }
+
+          .uncompletedTask {
+            color: grey;
+            text-decoration: line-through;
+          }
+        }
+      }
+      .visible {
+        visibility: visible;
+      }
+    }
+  }
 }
 
 .post {
-  background-color: $primary-color;
+  background-color: rgba($primary-color, 0.4);
+  grid-column: 2/3;
+  padding: 10px;
+  border-radius: $border_radius_boxes;
 
   .top {
+    height: auto;
     font-size: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    grid-template-rows: 5fr 1fr auto;
+    padding: 2px;
 
     .name {
       font-style: normal;
       font-weight: bold;
+      text-align: center;
+      font-size: 1.2rem;
+      margin: auto;
+      margin-left: 5px;
+      grid-row-start: 1;
+      grid-column-start: 2;
+    }
+
+    .title {
+      grid-row-start: 3;
+      grid-column: 1/4;
     }
 
     span {
       font-style: italic;
+      margin-left: 5px;
+    }
+
+    img {
+      width: 64px;
+      height: 64px;
+      border-radius: 32px;
     }
   }
 
@@ -47,8 +149,4 @@ body {
     opacity: 0.7;
     transition-duration: 0.5s;
   }
-}
-
-.todoBox {
-  visibility: hidden;
 }
