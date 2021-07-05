@@ -180,6 +180,25 @@ nav {
   }
 }
 
+.postCommentsBox {
+  position: relative;
+  top: -120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  background-color: rgba(black, 0.1);
+  margin-left: 20px;
+  border-radius: 20px;
+  padding: 20px;
+
+  .comment {
+    border: 1px solid rgba(black, 0.1);
+    box-shadow: 2px 2px 20px 5px rgba(black, 0.1);
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+}
+
 .onHoverPost {
   position: relative;
   top: -20vh;

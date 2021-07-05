@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { FaComment, FaHeart, FaHourglassHalf } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import { Comment } from "./Comment";
 
 export const Post = ({ post, setTodos, user }) => {
   const [hover, setHover] = useState(false);
-  const showComments = () => {};
+  const [showComments, setShowComments] = useState(false);
+
+  const likePost = () => {
+    //todo: add liking by action "update post"
+  };
 
   const showTodo = () => {
     setTodos(user);
@@ -21,10 +26,10 @@ export const Post = ({ post, setTodos, user }) => {
   };
 
   return (
-    <div>
+    <div className="postBox">
       <div
         className="post"
-        onClick={showComments()}
+        onClick={() => setShowComments(!showComments)}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
@@ -48,7 +53,7 @@ export const Post = ({ post, setTodos, user }) => {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <div>
+        <div onClick={() => likePost()}>
           <IconContext.Provider
             value={{ color: "red", size: 75, className: "icon" }}
           >
@@ -76,6 +81,13 @@ export const Post = ({ post, setTodos, user }) => {
           {getTimeFromPublish(post.date)}
         </div>
       </div>
+      {showComments && (
+        <div className="postCommentsBox">
+          {post.comments.map((comment) => (
+            <Comment comment={comment} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
