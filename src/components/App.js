@@ -3,15 +3,21 @@ import { Header } from "./Header";
 import { PostWall } from "./PostWall";
 import { useEffect, useState } from "react";
 import { setupTodos, setupPosts, setupUsers } from '../actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router } from "react-router-dom";
 
 
 function App() {
   let seedForAPI = "mySeed";
-  const posts = useSelector(state => state.posts);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
+  const [sortedPosts, setSortedPosts] = useState(false);
+
+  const sortFun = (posts) => {
+    if (sortedPosts) return posts;
+    setSortedPosts(true);
+    return posts.sort((a, b) => (Math.random() > 0.5 ? -1 : 1));
+  }
 
   useEffect(() => {
 
@@ -32,13 +38,14 @@ function App() {
         return { ...post, date, likes, comments: comments.filter(comment => comment.postId === post.id) }
       });
 
-
-
-      dispatch(setupPosts(finalPosts.sort((a, b) => (Math.random() > 0.5 ? -1 : 1))));
+      dispatch(setupPosts(sortFun(finalPosts)));
       dispatch(setupTodos(todos));
       dispatch(setupUsers(users.results));
       setLoading(false);
     }
+
+    document.title = "New posts!";
+    setTimeout(() => document.title = "Blog App", 5000);
 
     fetchData();
 
@@ -52,7 +59,7 @@ function App() {
         </div>
         <Header />
         <div className="main">{loading ? <div className="loadingBox"></div> :
-          <PostWall posts={posts} />}</div>
+          <PostWall />}</div>
       </div>
     </Router>
   );

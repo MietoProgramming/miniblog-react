@@ -8,6 +8,11 @@ export const addPost = post => ({
     payload: post
 });
 
+export const updatePost = updatedPost => ({
+    type: 'UPDATE_POST',
+    payload: updatedPost
+})
+
 export const setupPosts = posts => ({
     type: 'SETUP_INITIAL_POSTS',
     payload: posts

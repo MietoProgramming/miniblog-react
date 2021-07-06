@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Post } from "./Post";
 import { Todos } from "./Todos";
 import { useSelector } from "react-redux";
 
-export const PostWall = ({ posts }) => {
+export const PostWall = () => {
   const [todos, setTodos] = useState([]);
+  const posts = useSelector((state) => state.posts) || [];
   const users = useSelector((state) => state.users) || [];
   const todosGlobal = useSelector((state) => state.todos);
 
