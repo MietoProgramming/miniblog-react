@@ -1,8 +1,14 @@
-import { render, screen } from '@testing-library/react';
-import App from '../components/App';
+import React from "react";
+import { render, cleanup } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+afterEach(cleanup);
+
+// test("starting test", () => {
+//     const { getByText } = render(<App />);
+//     expect(getByText("Icons from fontawesome.com")).toBeInTheDocument();
+// });
+
+test('adds 1 + 2 to equal 3', () => {
+    expect(1 + 2).toBe(3);
 });

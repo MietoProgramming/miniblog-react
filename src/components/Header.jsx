@@ -3,7 +3,6 @@ import { IconContext } from "react-icons";
 import { Link } from "react-router-dom";
 
 export const Header = () => {
-  //todo links imitation
   return (
     <nav>
       <ul>

@@ -2,25 +2,10 @@ import { useState } from "react";
 import { FaComment, FaHeart, FaHourglassHalf } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { Comment } from "./Comment";
-import { useDispatch } from "react-redux";
-import { updatePost } from "../actions";
 
 export const Post = ({ post, setTodos, user }) => {
   const [hover, setHover] = useState(false);
   const [showComments, setShowComments] = useState(false);
-  const [haveLike, setHaveLike] = useState(false);
-  const dispatch = useDispatch();
-
-  const likePost = () => {
-    if (haveLike) {
-      post.likes -= 1;
-      setHaveLike(false);
-    } else {
-      post.likes += 1;
-      setHaveLike(true);
-    }
-    dispatch(updatePost(post));
-  };
 
   const showTodo = () => {
     setTodos(user);
@@ -64,7 +49,7 @@ export const Post = ({ post, setTodos, user }) => {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <div onClick={() => likePost()}>
+        <div>
           <IconContext.Provider
             value={{ color: "red", size: 75, className: "icon" }}
           >

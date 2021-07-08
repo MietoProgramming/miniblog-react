@@ -1,4 +1,4 @@
-import '../styles/App.css';
+// import "../styles/App.css";
 import { Header } from "./Header";
 import { PostWall } from "./PostWall";
 import { useEffect, useState } from "react";
